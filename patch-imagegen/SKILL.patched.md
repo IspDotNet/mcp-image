@@ -42,11 +42,12 @@ Do not use this skill for:
    - style reference
    - composition reference
    - subject reference
-7. Execute the request through the default MCP image workflow for this skill.
-8. Keep execution overrides minimal and intentional.
-9. If the image is meant for project use, save it into the requested project path or a safe sibling filename.
-10. Do not overwrite an existing asset unless the user explicitly asked for replacement.
-11. If the first result is close but not correct, iterate with one targeted change at a time.
+7. Execute the request through `mcp-image` as the default execution path for this skill.
+8. Use `quality: "balanced"` unless the user asked for a different preset, and keep other execution overrides minimal and intentional.
+9. Add factual execution parameters only when they materially improve correctness.
+10. If the image is meant for project use, save it into the requested project path or a safe sibling filename.
+11. Do not overwrite an existing asset unless the user explicitly asked for replacement.
+12. If the first result is close but not correct, iterate with one targeted change at a time.
 
 ## Decision rules
 

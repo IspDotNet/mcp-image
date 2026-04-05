@@ -275,8 +275,13 @@ This section is important because the whole reason for this patch is to avoid fo
 Update the examples so they align with the validated `mcp-image` usage while still reading like image-request examples first.
 
 At minimum:
-- add `Quality: balanced` to the examples where it makes sense
+- if an execution default must be surfaced near an example, keep it outside the prompt block as a short note rather than embedding runtime attributes into the semantic prompt scaffold
 - keep examples concise and usable
+
+Important clarification:
+- Do **not** embed runtime attributes such as `Quality`, `useWorldKnowledge`, or `useGoogleSearch` inside the prompt blocks in `SKILL.md` examples.
+- `SKILL.md` examples should remain image-request examples first.
+- If execution behavior needs to be hinted, do it in surrounding prose or a short note outside the code block.
 
 Do not overload `SKILL.md` with too many examples; detailed templates belong in the references.
 
@@ -339,6 +344,11 @@ It must be updated so that it still teaches good prompting in general, while ali
    - `purpose`
 7. Add the tested rule that if `quality: "quality"` improves finish but reduces obedience, step back to `balanced`.
 8. Ensure the table of contents stays consistent with the actual section headings after the patch.
+9. Perform an explicit final verification pass on the finished `references/prompting.md` file:
+   - every TOC entry must map to a real heading that exists in the final file
+   - heading text and TOC labels must stay semantically aligned after edits
+   - no broken, invented, stale, or malformed anchor links may remain
+   - if any heading is renamed during the patch, the matching TOC entry must be updated in the same pass before the task is considered complete
 
 Important refinement:
 - Keep runtime policy present but compact.
@@ -366,12 +376,12 @@ This file should be updated so the examples reflect the validated `mcp-image` ex
 
 1. Keep the document as example prompts for image generation and editing.
 2. Add a short note near the top that the default execution path is `mcp-image`.
-2. Add a short default-invocation note near the top:
+3. Add a short default-invocation note near the top:
    - `quality: "balanced"`
    - no `useWorldKnowledge`
    - no `useGoogleSearch`
-3. Update existing examples to include quality where appropriate.
-4. Add at least one style-sensitive example that reflects the lessons from testing.
+4. Reflect execution defaults through top-level notes or short surrounding prose only; do **not** embed runtime attributes such as `Quality` into the prompt scaffolds themselves.
+5. Add at least one style-sensitive example that reflects the lessons from testing.
 
 The most useful example to add is a retro 2D cartoon example with hard medium constraints, such as:
 - strictly 2D hand-drawn cartoon
@@ -380,8 +390,8 @@ The most useful example to add is a retro 2D cartoon example with hard medium co
 - no 3D rendering
 - no volumetric lighting
 
-5. Add at least one factual/historical example showing justified use of `useWorldKnowledge: true`.
-6. Keep examples practical and copy-paste friendly.
+6. Add at least one factual/historical example showing justified use of `useWorldKnowledge: true`.
+7. Keep examples practical and copy-paste friendly.
 
 Important nuance:
 - The opening lines of this file must remain subordinate to the main purpose of the document: helping the agent request good images clearly.
@@ -401,6 +411,21 @@ Important refinement about execution attributes:
 ### Preserve where possible
 
 Preserve the existing useful examples and their category coverage by default. Update them only as needed to align terminology and defaults with the validated MCP workflow, but do not remove or collapse them unless there is a strong, explicit reason.
+
+---
+
+## Mandatory final validation before considering the patch complete
+
+Before declaring the work finished, the implementing agent must re-read the final versions of `SKILL.md`, `references/prompting.md`, and `references/sample-prompts.md` and verify all of the following:
+
+1. The skill still reads primarily as a general raster-image generation/editing skill, not as tool documentation for `mcp-image`.
+2. Detailed runtime policy is concentrated mainly in execution-oriented guidance rather than being redundantly scattered across the whole skill.
+3. No runtime attributes such as `Quality`, `useWorldKnowledge`, or `useGoogleSearch` were embedded inside semantic prompt scaffolds unless the brief explicitly and exceptionally required it.
+4. The original breadth of useful examples remains intact, including UI/wireframes, logo/brand work, lighting/weather edits, style transfer, compositing, sketch-to-render, and text-localization coverage.
+5. Any new examples added from testing were introduced without displacing still-useful original categories.
+6. Every table of contents in the patched files matches the final headings and contains no stale or malformed internal links.
+
+If any item above fails, the patch is not complete and must be corrected before handoff.
 
 ---
 

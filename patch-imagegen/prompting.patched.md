@@ -4,18 +4,18 @@ These prompting principles are primarily about how to request good images and go
 
 This file is about prompt structure, specificity, invariants, and iteration. Execution-layer defaults are kept brief and subordinate to the prompting guidance.
 
-## Contents
-- [Structure](#structure)
-- [Specificity policy](#specificity-policy)
-- [Allowed and disallowed augmentation](#allowed-and-disallowed-augmentation)
-- [Composition and layout](#composition-and-layout)
-- [Constraints and invariants](#constraints-and-invariants)
-- [Text in images](#text-in-images)
-- [Input images and references](#input-images-and-references)
-- [Iterate deliberately](#iterate-deliberately)
-- [Execution-layer defaults](#execution-layer-defaults)
-- [Use-case tips](#use-case-tips)
-- [Where to find copy/paste recipes](#where-to-find-copy/paste-recipes)
+ ## Contents
+ - [Structure](#structure)
+ - [Specificity policy](#specificity-policy)
+ - [Allowed and disallowed augmentation](#allowed-and-disallowed-augmentation)
+ - [Composition and layout](#composition-and-layout)
+ - [Constraints and invariants](#constraints-and-invariants)
+ - [Text in images](#text-in-images)
+ - [Input images and references](#input-images-and-references)
+ - [Iterate deliberately](#iterate-deliberately)
+ - [Execution-layer defaults](#execution-layer-defaults)
+ - [Use-case tips](#use-case-tips)
+ - [Where to find copy-paste recipes](#where-to-find-copy-paste-recipes)
 
 ## Structure
 - Use a consistent order: scene/backdrop -> subject -> key details -> constraints -> output intent.
@@ -105,5 +105,5 @@ Edit:
 - compositing: Reference inputs by index; specify what moves where; match lighting, perspective, and scale; keep the base framing unchanged.
 - sketch-to-render: Preserve layout, proportions, and perspective; choose materials and lighting that support the supplied sketch without adding new elements.
 
-## Where to find copy/paste recipes
+## Where to find copy-paste recipes
 For copy/paste prompt specs and reusable scaffolds, see `references/sample-prompts.md`. This file focuses on principles, specificity, and iteration patterns.
