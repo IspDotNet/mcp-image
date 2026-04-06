@@ -61,6 +61,7 @@ Do not use this skill for:
 
 ### Prompt augmentation policy
 - Add only the details needed to improve the output materially.
+- If the requested visual medium is ambiguous, clarify it before adding medium-specific detail.
 - Do not invent extra props, characters, brand elements, side-specific placement, or story details unless implied.
 - For prompts containing exact text, require verbatim rendering.
 - For edits, repeat invariants during each iteration to reduce drift.

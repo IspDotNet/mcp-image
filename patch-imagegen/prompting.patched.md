@@ -21,12 +21,15 @@ This file is about prompt structure, specificity, invariants, and iteration. Exe
 - Use a consistent order: scene/backdrop -> subject -> key details -> constraints -> output intent.
 - Include intended use (ad, UI mock, infographic) to set the level of polish.
 - For complex requests, use short labeled lines instead of one long paragraph.
+- As a light mental model, make sure the prompt covers subject, context, and style/medium even when using labeled lines.
 
 ## Specificity policy
 - If the user prompt is already specific and detailed, normalize it into a clean spec without adding creative requirements.
 - If the prompt is generic, you may add tasteful detail when it materially improves the output.
 - Treat examples in `sample-prompts.md` as fully-authored recipes, not as the default amount of augmentation to add to every request.
 - For style-sensitive tasks, preserve the requested medium exactly.
+- If it is unclear whether the user wants a photo, illustration, UI mockup, wireframe, or stylized render, clarify before adding medium-specific language.
+- When adding helpful detail, prefer concrete visual categories such as lighting direction/quality/color temperature, materials/textures, atmosphere/air, scale/proportion, and photographic lens/aperture/angle when relevant.
 
 ## Allowed and disallowed augmentation
 
@@ -45,6 +48,7 @@ Do not add:
 - Specify framing and viewpoint (close-up, wide, top-down) and placement only when it materially helps.
 - Call out negative space if the asset clearly needs room for UI or copy.
 - Avoid making left/right layout decisions unless the user or surrounding layout supports them.
+- For scenes with multiple elements, define foreground, midground, background, relative scale, and key spatial relationships only when they materially improve the result.
 
 ## Constraints and invariants
 - State what must not change (`keep background unchanged`).
@@ -62,6 +66,7 @@ Examples of medium constraints:
 - Put literal text in quotes or ALL CAPS and specify typography (font style, size, color, placement).
 - Spell uncommon words letter-by-letter if accuracy matters.
 - For in-image copy, require verbatim rendering and no extra characters.
+- Specify visual treatment and integration: font style or family, weight, relative size, placement, and what surface or object carries the text.
 
 ## Input images and references
 - Do not assume that every provided image is an edit target.
@@ -69,6 +74,7 @@ Examples of medium constraints:
 - If the user provides images for style, composition, or mood guidance and does not ask to modify them, treat the request as generation with references.
 - If the user asks to preserve an existing image while changing specific parts, treat the request as an edit.
 - For compositing, describe how the images interact (`place the subject from Image 2 into Image 1`).
+- For recurring characters or subjects across variants, preserve at least 3 distinctive visual markers so the identity stays recognizable.
 
 ## Iterate deliberately
 - Start with a clean base prompt, then make small single-change edits.
@@ -94,6 +100,7 @@ Generate:
 - illustration-story: Define panels or scene beats; keep each action concrete.
 - stylized-concept: Specify style cues, material finish, and rendering approach (3D, painterly, clay) without inventing new story elements.
 - historical-scene: State the location/date and required period accuracy; constrain clothing, props, and environment to match the era.
+- historical-scene: If period or cultural accuracy cannot be supported confidently, flag the uncertainty instead of guessing.
 
 Edit:
 - text-localization: Change only the text; preserve layout, typography, spacing, and hierarchy; no extra words or reflow unless needed.
