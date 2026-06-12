@@ -1,7 +1,7 @@
 {
   "name": "mcp-image",
   "mcpName": "io.github.shinpr/mcp-image",
-  "version": "0.11.0",
+  "version": "0.11.2",
   "description": "MCP server for AI image generation",
   "type": "module",
   "main": "dist/index.js",
@@ -44,7 +44,8 @@
     "skills"
   ],
   "scripts": {
-    "build": "tsc && tsc-alias",
+    "prepare": "husky",
+    "build": "tsc",
     "link": "npm run build && npm link",
     "test": "vitest run",
     "test:coverage": "vitest run --coverage",
@@ -59,27 +60,27 @@
     "check": "biome check src",
     "check:fix": "biome check --write src",
     "check:deps": "dpdm --no-tree --no-warning --circular --exit-code circular:1 --exclude \"(node_modules|__tests__|\\.test\\.ts$|\\.spec\\.ts$)\" --tsconfig ./tsconfig.json \"src/**/*.ts\"",
-    "check:all": "npm run check && npm run lint && npm run format:check && npm run check:deps && npm run build && npm run test",
+    "check:unused": "knip",
+    "check:all": "npm run check && npm run lint && npm run format:check && npm run check:deps && npm run check:unused && npm run build && npm run test",
     "cleanup:processes": "bash ./scripts/cleanup-test-processes.sh",
     "test:safe": "npm test && npm run cleanup:processes"
   },
   "dependencies": {
-    "@google/genai": "^1.42.0",
-    "@modelcontextprotocol/sdk": "^1.0.0",
-    "openai": "^6.35.0"
+    "@google/genai": "^2.8.0",
+    "@modelcontextprotocol/sdk": "^1.29.0",
+    "openai": "^6.39.0"
   },
   "devDependencies": {
-    "@biomejs/biome": "^2.4.6",
-    "@types/node": "^25.3.5",
-    "@vitest/coverage-v8": "^4.0.18",
-    "@vitest/ui": "^4.0.18",
-    "dpdm": "^4.0.1",
+    "@biomejs/biome": "^2.4.15",
+    "@types/node": "^25.9.1",
+    "@vitest/coverage-v8": "^4.1.7",
+    "@vitest/ui": "^4.1.7",
+    "dpdm": "^4.2.0",
     "husky": "^9.1.7",
-    "lint-staged": "^16.3.2",
-    "tsc-alias": "^1.8.16",
-    "tsx": "^4.21.0",
-    "typescript": "^5.9.3",
-    "vitest": "^4.0.18"
+    "knip": "^6.16.1",
+    "lint-staged": "^17.0.7",
+    "typescript": "^6.0.3",
+    "vitest": "^4.1.7"
   },
   "engines": {
     "node": ">=22"
